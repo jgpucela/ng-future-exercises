@@ -1,22 +1,22 @@
-// @ts-nocheck
+// tslint:disable
 class Animal {
   name: string
 
-  constructor(name: any) {
+  constructor(name: string) {
     this.name = name
   }
 
-  move(distance: any) {
+  move(distance: number) {
     console.log('Moved ' + distance + ' meters')
   }
 }
 
 class Dog extends Animal {
-  constructor(name: any) {
+  constructor(name: string) {
     super(name)
   }
 
-  move(distance = 5) {
+  move(distance:number = 5) {
     console.log(this.name + ' moves...')
     super.move(distance)
   }
@@ -26,68 +26,80 @@ const dog = new Dog('Tobby')
 dog.move()
 
 class ClassWithPrivateMethodsAndProperties {
-  publicProperty = 42
-  private privateProperty = 42
+  publicProperty:number = 42
+  private privateProperty:number = 42
 
-  publicMethod() {
+  publicMethod():number {
     return this.privateMethod()
   }
 
-  private privateMethod() {
+  private privateMethod():number {
     return this.privateProperty
   }
 }
 
 class ImprovedConstructorAssignment {
-  constructor(public name: any) {}
+  constructor(public name: string) {}
 
-  move(distance: any) {
+  move(distance: number) {
     console.log('Moved ' + distance + ' meters')
+  }
+}
+
+class Person {
+  private _age: number
+
+  set age(age:number) {
+    this._age = age
+  }
+
+  get age():number {
+    return this._age
   }
 }
 
 class ReadonlyClass {
   constructor(
-    public readonly name: any,
-    private readonly foo: any,
-    private readonly person: any,
+    public readonly name: string,
+    private readonly foo: string,
+    private readonly person: Person,
   ) {}
 
-  bar(): any {
+  bar(): string {
     this.person.age = 43
     return this.name + this.foo
   }
 }
 
 abstract class CostCalculator {
-  abstract billingCost(): any
+  abstract billingCost(): number
 
-  calculateCost(baseCost: any) {
+  calculateCost(baseCost: number) {
     const total = baseCost + this.productionCost() + this.logisticsCost() + this.marketingCost() + this.billingCost()
     return total
   }
 
-  private productionCost() {
+  private productionCost():number {
     return 5
   }
 
-  private logisticsCost() {
+  private logisticsCost():number {
     return 2
   }
 
-  private marketingCost() {
+  private marketingCost():number {
     return 1
   }
 }
 
 class SpainCostCalculator extends CostCalculator {
-  override billingCost(): any {
+  override billingCost(): number {
     return 21
   }
 }
 
 class FranceCostCalculator extends CostCalculator {
-  override billingCost(): any {
+  override billingCost(): number {
     return 21
   }
 }
