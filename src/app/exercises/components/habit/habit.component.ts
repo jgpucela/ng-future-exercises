@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, input } from '@angular/core'
 
 @Component({
   selector: 'app-habit',
@@ -7,4 +7,15 @@ import { Component } from '@angular/core'
   standalone: true,
   imports: [],
 })
-export class HabitComponent {}
+export class HabitComponent {
+  title = 'hello world'
+
+  method() {
+    return this.title + 1
+  }
+  update() {
+    this.title = 'New title'
+  }
+
+  name = input<string>('Unknown')
+}
